@@ -13,7 +13,8 @@ function(
   }
 
   window.onGoogleMapsLoad = _init;
-  require(['https://maps.googleapis.com/maps/api/js?key=AIzaSyDmGn0JUvmkUU6PxZFLesINfa24_lJQmts&libraries=drawing&callback=window.onGoogleMapsLoad']);
+  window.GOOGLE_MAPS_API_KEY = 'AIzaSyDmGn0JUvmkUU6PxZFLesINfa24_lJQmts';
+  require(['https://maps.googleapis.com/maps/api/js?key=' + window.GOOGLE_MAPS_API_KEY + '&libraries=drawing&callback=window.onGoogleMapsLoad']);
 
   return {
     init : _init

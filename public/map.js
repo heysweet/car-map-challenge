@@ -1,9 +1,17 @@
 define([
+  'mapStats'
 ], 
 function(
+  mapStats
 ) {
   var map;
   var drawingManager;
+  var currentTrips = [];
+  var markers = [];
+  var topPickups = {
+    markers : [],
+    coords : []
+  };
 
   /**
    * Call this method after Google Maps has been initialized to set the initial map state
@@ -34,25 +42,103 @@ function(
     google.maps.event.addListener(drawingManager, 'overlaycomplete', _onDrawingComplete);
   }
 
+  /**
+   * Adds a trip's markers to the set of markers on the map
+   *
+   * @param {Object} trip
+   */
+  function _addTripMarkers(trip) {
+    markers.push(new google.maps.Marker({
+      position: {
+        lat : trip.Lat,
+        lng : trip.Lon
+      },
+      map: null,
+      icon: 'http://127.0.0.1:8080/blue.png'
+    }));
+    
+    markers.push(new google.maps.Marker({
+      position: {
+        lat : trip.DropoffLat,
+        lng : trip.DropoffLon
+      },
+      map: null,
+      icon: 'http://127.0.0.1:8080/red.png'
+    }));
+  }
+
+  /**
+   * Sets the map for all markers in the array
+   *
+   * @param {function} returns a map based on (marker, index)
+   */
+  function _setMapOnAll(func) {
+    for (var i = 0; i < markers.length; i++) {
+      console.log(markers[i]);
+      markers[i].setMap(func(markers[i], i));
+    }
+  }
+
+  /**
+   * Hides all markers from the map
+   */
+  function _hideAllMarkers() {
+    _setMapOnAll(function () {
+      return null;
+    });
+
+    topPickups.markers.forEach(function (marker) {
+      marker.setMap(null);
+    });
+  }
+
+  /**
+   * Shows all markers on the map
+   */
+  function _showAllMarkers() {
+    _setMapOnAll(function () {
+      return map;
+    });
+  }
+
+  /**
+   * Shows only the pickup locations on the map
+   */
+  function _showAllPickups() {
+    _setMapOnAll(function (trip, i) {
+      return (i % 2) ? map : null;
+    });
+  }
+
+  /**
+   * Shows only the dropoff locations on the map
+   */
+  function _showAllDropoffs() {
+    _setMapOnAll(function (trip, i) {
+      return (i % 2) ? null : map;
+    });
+  }
+
+  function _onGeocodeLookup(e) {
+    console.log(e);
+  }
+
+  /**
+   * Method called when ajax request comes back with list of JSON points
+   *
+   * @param {Object} event
+   */
   function _onDataReceive(event) {
+    currentTrips = [];
+
     event.responseJSON.forEach(function (trip) {
-      new google.maps.Marker({
-        position: {
-          lat : trip.Lat,
-          lng : trip.Lon
-        },
-        map: map,
-        icon: 'http://127.0.0.1:8080/blue.png'
-      });
-      
-      new google.maps.Marker({
-        position: {
-          lat : trip.DropoffLat,
-          lng : trip.DropoffLon
-        },
-        map: map,
-        icon: 'http://127.0.0.1:8080/red.png'
-      });
+      currentTrips.push(trip);
+      _addTripMarkers(trip);
+    });
+
+    topPickups = mapStats.calculateTopKPickups(currentTrips, 10);
+    topPickups.markers.forEach(function (marker) {
+      marker.setMap(map);
     });
   }
 
@@ -101,7 +187,11 @@ function(
   }
 
   return {
+    hideAllMarkers : _hideAllMarkers,
     init : _init,
-    setEnableDrawingTools : _setEnableDrawingTools
+    setEnableDrawingTools : _setEnableDrawingTools,
+    showAllDropoffs : _showAllDropoffs,
+    showAllMarkers : _showAllMarkers,
+    showAllPickups : _showAllPickups
   }
 });
