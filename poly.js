@@ -6,8 +6,8 @@ function (
   /**
    * Returns true if the point is inside the polygon.
    *
-   * @param Object - point
-   * @param Object - polygon
+   * @param {Object} point
+   * @param {Object} polygon
    */
   function _isPointInPolygon(pt, polygon) {
 
@@ -50,7 +50,7 @@ function (
   /**
    * Converts array of points into Polygon object
    * 
-   * @param Array - points
+   * @param {Array} points
    */
   function _getPolygon(points) {
     return {
@@ -62,7 +62,7 @@ function (
   /**
    * Returns the smallest non-rotated rectangle which contains the polygon
    *
-   * @param Array - points
+   * @param {Array} points
    */
   function _getBoundingBox(points) {
     var result = {

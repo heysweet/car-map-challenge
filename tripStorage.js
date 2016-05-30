@@ -16,7 +16,7 @@ function (
   /**
    * Gets the associated key from a data element
    *
-   * @param Object - data
+   * @param {Object} data
    */
   function _getKey(data) {
     return data.Lat || data.y;
@@ -25,7 +25,7 @@ function (
   /**
    * Adds a trip to the tripStorage
    *
-   * @param Object - data
+   * @param {Object} data
    */
   function _push(data) {
     tree.insert(_getKey(data), data);
@@ -34,8 +34,8 @@ function (
   /**
    * Returns an iterator for values in the appropriate key range
    *
-   * @param Object - polygon
-   * @param function - func
+   * @param {Object} polygon
+   * @param {function} func
    */
   function _forEachCandidateTripInPolygon(polygon, func) {
     var start, end;
@@ -63,7 +63,7 @@ function (
   /**
    * Gets the trips from the CSV files which start and end within the given polygon
    *
-   * @param Object - polygon
+   * @param {Object} polygon
    */
   function _getTripsInPolygon(polygon) {
     var results = [];
