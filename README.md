@@ -71,7 +71,7 @@ The polish on the client was the last focus before finally determining an endpoi
 
 ### server.js
 
-This file manages the setup of the server, pre-caching of files, as well handling all incoming requests. It uses a lightweight express server.
+This file manages the setup of the server, pre-caching of files, as well handling all incoming requests. It uses a lightweight express server. To run the server, simply call `node server.js`.
 
 ### tripStorage.js
 
