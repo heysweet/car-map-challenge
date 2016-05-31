@@ -9,7 +9,7 @@ The first file of the project, this simple python script was used to format the 
 ## Using the Website
 Visit this url: <http://52.36.208.194:8080/>
 
-Draw a polygon on the map by **clicking** on the map at multiple locations, instead of dragging. To end the polygon, either click at the start location or double click anywhere on the map to include it as the last point in the polygon.
+Draw a polygon on the map by **clicking on the map at multiple locations, instead of dragging**. To end the polygon, either click at the start location or double click anywhere on the map to include it as the last point in the polygon.
 
 Use the `Hide All` button any time you want to clear the represented data.
 
