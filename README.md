@@ -61,7 +61,7 @@ This module handles efficiently finding the top 10 pickup locations. It could ea
 
 ### More
 
-The client makes use of [require.js](http://requirejs.org/), [heap.js](https://www.npmjs.com/package/heap), [Bootstrap](http://getbootstrap.com/javascript/), [jQuery](https://jquery.com/), and [npm](https://www.npmjs.com/).
+The client makes use of [require.js](http://requirejs.org/), [heap.js](https://www.npmjs.com/package/heap), [Bootstrap](http://getbootstrap.com/javascript/), [jQuery](https://jquery.com/), and [node](https://nodejs.org/en/).
 
 ### Comments
 
