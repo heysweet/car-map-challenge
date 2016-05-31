@@ -9,7 +9,7 @@ The first file of the project, this simple python script was used to format the 
 ## Using the Website
 Visit this url: <http://52.36.208.194:8080/>
 
-Draw a polygon on the map by clicking on the map at multiple locations. To end the polygon, either click at the start location or double click anywhere on the map to include it as the last point in the polygon.
+Draw a polygon on the map by **clicking** on the map at multiple locations, instead of dragging. To end the polygon, either click at the start location or double click anywhere on the map to include it as the last point in the polygon.
 
 Use the `Hide All` button any time you want to clear the represented data.
 
@@ -85,3 +85,8 @@ Poly manages checking if a point is in a polygon and related functions. It first
 
 The server is very simple by design. I wanted to use the server to do the heavy lifting of avoiding sending too many coordinates over the wire. I also stored the date/time information of hopes of moving forward with some Day/Night division, or perhaps windows of time sliders to allow querying of specific dates or hours. Ultimately given more time, creating animations of how trips change throughout the day would be a fun project to work on, that I imagine could be informative. Of course, I wouldn't move forward with a task like that unless it was a feature that was requested by the team that was going to use this.
 
+## Additional Notes
+
+Due to the time constraints, I just copy and pasted the Google Maps API key into the actual code. Moving forward, I would manage all secure information inside a credentials.json file located outside of the repository (.gitignore credentials.json to avoid developers accidentally pushing it).
+
+Additionally, the user interface isn't fully intuitive. I would spend more time to make shape drawing more clear, by either allowing dragging, or the more computationally friendly choice would be to demonstrate the click-to-draw functionality.
