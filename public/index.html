@@ -6,22 +6,27 @@
 		<title>City Data Explorer</title>
 		<meta name="viewport" content="initial-scale=1.0">
 		<meta charset="utf-8">
-		<style>
-			html, body {
-				height: 100%;
-				margin: 0;
-				padding: 0;
-			}
-			#map {
-				height: 100%;
-			}
-		</style>
-		<script src="jquery-1.12.4.min.js"></script>
-		<script data-main="main.js" src="require.js"></script>
-
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/styles.css" rel="stylesheet">
 	</head>
-
 	<body>
-	<div id="map"></div>
+		<div id="map" class="col-lg-12"></div>
+		<div id="tools" class="bottom col-lg-12">
+			<ol id="list" class="list col-lg-6" type="1">
+			</ol>
+			<div id="buttons" class="buttons col-lg-6">
+				<button id="newShape" onclick="">New Shape</button>
+				<button id="hideAll" onclick="">Hide All</button>
+				<button id="showAll" onclick="">Show All Trips</button>
+				<button id="showDropoffs" onclick="">Show Dropoffs</button>
+				<button id="showPickups" onclick="">Show Pickups</button>
+				<button id="showTop10" onclick="">Show Top 10 Pickups</button>
+				<button id="showHeatMap" onclick="">Show Pickups Heatmap</button>
+			</div>
+		</div>
+
+		<script src="js/jquery-1.12.4.min.js"></script>
+		<script data-main="js/main.js" src="js/require.js"></script>
+		<script src="js/bootstrap.min.js"></script>
 	</body>
 </html>

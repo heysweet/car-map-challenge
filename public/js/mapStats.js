@@ -1,5 +1,5 @@
 define([
-  'heap.min.js'
+  './js/heap.min.js'
 ], 
 function(
   Heap
@@ -35,13 +35,12 @@ function(
   function _updateHeap(trip, pickups, heap, limit, precision) {
     // Rounding buckets pickup locations into the same location.
     // The smaller the precision, the bigger the buckets
-    var lat = parseFloat(trip.Lat.toFixed(precision));
-    var lon = parseFloat(trip.Lon.toFixed(precision));
-    var key = lat.toString() + ',' + lon.toString();
+    var lat = parseFloat(trip.lat.toFixed(precision));
+    var lng = parseFloat(trip.lng.toFixed(precision));
+    var key = lat.toString() + ',' + lng.toString();
 
     if (pickups[key]) {
       pickups[key] += 1;
-      console.log('HAPPENS');
 
       var mostFrequentPickups = heap.toArray();
 
@@ -59,7 +58,7 @@ function(
         key : key, 
         count : pickups[key],
         lat : lat,
-        lon : lon
+        lng : lng
       });
     } else {
       pickups[key] = 1;
@@ -68,7 +67,7 @@ function(
         key : key, 
         count : pickups[key],
         lat : lat,
-        lon : lon
+        lng : lng
       });
     }
 
@@ -80,7 +79,7 @@ function(
    *
    * @param {Array} currentTrips
    * @param {int} k
-   * @param {int} precision - the amount of decimal places in the latLons to
+   * @param {int} precision - the amount of decimal places in the latLngs to
    *                use to determine a single pickup. 2 is about 10 blocks, 
    *                3 is about a block, and 4 is a couple of feet.
    */
@@ -95,10 +94,7 @@ function(
       pickups = _updateHeap(trip, pickups, heap, k, precision);
     });
 
-    var topPickups = {
-      markers : [],
-      coords : []
-    };
+    var topPickups = [];
 
     // Sort in descending order
     var mostFrequentPickups = heap.toArray().sort(function (a, b) {
@@ -107,19 +103,8 @@ function(
 
     mostFrequentPickups.forEach(function (trip) {
       delete trip.key;
-      topPickups.coords.push(trip);
-
-      topPickups.markers.push(new google.maps.Marker({
-        position: {
-          lat : trip.lat,
-          lng : trip.lon
-        },
-        map: null,
-        icon: 'http://127.0.0.1:8080/blue.png'
-      }));
+      topPickups.push(trip);
     });
-
-    console.log(topPickups);
 
     return topPickups;
   }

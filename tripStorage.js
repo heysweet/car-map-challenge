@@ -9,6 +9,9 @@ function (
 
   var tree;
 
+  /**
+   * Initializes the redblack module
+   */
   function _init() {
     tree = redblack.tree();
   }
@@ -19,7 +22,7 @@ function (
    * @param {Object} data
    */
   function _getKey(data) {
-    return data.Lat || data.y;
+    return data.lat || data.y;
   }
 
   /**
@@ -76,13 +79,13 @@ function (
       numPoints += 1;
 
       var p1 = {
-        x : trip.Lon,
-        y : trip.Lat
+        x : trip.lng,
+        y : trip.lat
       };
 
       var p2 = {
-        x : trip.DropoffLon,
-        y : trip.DropoffLat
+        x : trip.dropoffLng,
+        y : trip.dropoffLat
       };
 
       if (poly.isPointInPolygon(p1, polygon) && poly.isPointInPolygon(p2, polygon)) {

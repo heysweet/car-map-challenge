@@ -30,20 +30,30 @@ function(
   tripStorage.init();
 
   var fieldNames = [
-    'Date/Time',
-    'Lat',
-    'Lon',
-    'DropoffLat',
-    'DropoffLon'
+    'date/Time',
+    'lat',
+    'lng',
+    'dropoffLat',
+    'dropoffLng'
     // Ignore the Base field
   ];
 
+  function loadFiles(dir) {
+    fs.readdirSync(dir).forEach(function (filename) {
+      if (filename[0] !== '.') {
+        if (filename.indexOf('.') === -1) {
+          loadFiles(dir + filename + '/');
+        } else {
+          var path = dir + filename;
+          console.log(path);
+          files[path] = fs.readFileSync(path, 'utf-8');
+        }
+      }
+    });
+  }
+
   // Load in files
-  fs.readdirSync('./public/').forEach(function (filename) {
-    if (filename[0] !== '.') {
-      files['/' + filename] = fs.readFileSync('./public/' + filename, 'utf-8');
-    }
-  });
+  loadFiles('./public/');
 
   console.log('Loading csv data...');
   fs.readdirSync('./data/').forEach(function (filename) {
@@ -78,7 +88,7 @@ function(
   console.log('csv data load complete!');
 
   app.get('/', function (req, res) {
-    res.send(files['/index.html']);
+    res.send(files['./public/index.html']);
   });
 
   app.post('/tripData/', function (req, res) {
@@ -98,10 +108,10 @@ function(
 
     var url = req.url.split('.');
 
-    if (url[url.length - 1] === 'png') {
+    if (url[url.length - 1] === 'png' || url[url.length - 1] === 'css') {
       res.sendFile(path.join(__dirname, '/public' + req.url));
     } else {
-      res.send(files[req.url]);
+      res.send(files['./public' + req.url]);
     }
   });
 
