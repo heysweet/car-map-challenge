@@ -6,7 +6,7 @@ A website for geofencing transit data.
 
 The first file of the project, this simple python script was used to format the data and generate dropoff locations.
 
-## Using the Website
+## Using the Website 
 Visit this url: <http://52.36.208.194:8080/>
 
 Draw a polygon on the map by **clicking on the map at multiple locations, instead of dragging**. To end the polygon, either click at the start location or double click anywhere on the map to include it as the last point in the polygon.
@@ -57,7 +57,7 @@ Hovering over any item in this list found in the bottom left corner will highlig
 
 ### mapStats.js
 
-This module handles efficiently finding the top 10 pickup locations, as well as could be extended to manage any other simple statistical analysis of the data points.
+This module handles efficiently finding the top 10 pickup locations. It could easily be extended to manage any other simple statistical analyses of the data points. The choice to handle this client side was to distribute heavy lifting on the server to the clients.
 
 ### More
 
@@ -75,7 +75,7 @@ This file manages the setup of the server, pre-caching of files, as well handlin
 
 ### tripStorage.js
 
-`tripStorage` efficiently retrieves coordinates which are likely candidates to be located within a target polygon by using a BST and using the latitudes as the key to get a pool of coordinates which exist only in the same general verticality. I chose to use a [red-black tree module](https://www.npmjs.com/package/redblack) as a simple solution to ensure a self-balancing BST and efficient lookup. I also chose to use tripStorage as a singleton, self-containing the only possible BST, to avoid generating multiple massive trees.
+`tripStorage` efficiently retrieves coordinates which are likely candidates to be located within a target polygon by using a BST and using the latitudes as the key to get a pool of coordinates which exist only in the same general verticality. I chose to use a [red-black tree module](https://www.npmjs.com/package/redblack) as a simple solution to ensure a self-balancing BST and efficient lookup. I also chose to use tripStorage as a singleton, self-containing the only possible BST, to avoid generating multiple massive trees. The choice to put this server-side was to reduce the amount of data the server needed to send to the clients.
 
 ### poly.js
 
