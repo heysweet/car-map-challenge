@@ -4,7 +4,7 @@ A website for geofencing transit data.
 
 ## scripts/convertDropoffs.py
 
-The first file of the project, this simple python script was used to format the data and generate dropoff locations.
+The first file of the project, this simple python script was used to format the data and generate dropoff locations. Call this script on the .csv files given to process to generate new .csv files containing dropoff locations.
 
 ## Using the Website 
 Visit this url: <http://52.36.208.194:8080/>
@@ -71,7 +71,7 @@ The polish on the client was the last focus before finally determining an endpoi
 
 ### server.js
 
-This file manages the setup of the server, pre-caching of files, as well handling all incoming requests. It uses a lightweight express server. To run the server, simply call `node server.js`.
+This file manages the setup of the server, pre-caching of files, as well handling all incoming requests. It uses a lightweight express server. **Note that the repo contains shortened versions of the CSV files, running this will mean only a few existing datapoints**. Use `scripts/convertDropoffs.py` to generate the larger csv files if desired. To run the server, simply call `npm install` followed by `node server.js`.
 
 ### tripStorage.js
 

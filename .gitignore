@@ -1,5 +1,4 @@
 unprocessed_data/*
-data/*
 credentials.json
 node_modules/*
 *.swp

@@ -82,7 +82,7 @@ function(
     var size = Math.floor(24 * scale);
 
     var image = {
-      url: 'http://127.0.0.1:8080/' + colorName + '.png',
+      url: colorName + '.png',
       scaledSize: new google.maps.Size(size, size),
       origin: new google.maps.Point(0, 0),
       anchor: new google.maps.Point(halfSize, halfSize)
