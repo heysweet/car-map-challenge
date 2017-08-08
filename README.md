@@ -1,7 +1,6 @@
 # car-map-challenge
 A website for geofencing transit data.
 
-
 ## scripts/convertDropoffs.py
 
 The first file of the project, this simple python script was used to format the data and generate dropoff locations. Call this script on the .csv files given to process to generate new .csv files containing dropoff locations.
@@ -13,35 +12,35 @@ Draw a polygon on the map by **clicking on the map at multiple locations, instea
 
 Use the `Hide All` button any time you want to clear the represented data.
 
-###New Shape
+### New Shape
 
 Click this button to clear the current context and start drawing a new polygon to look for data within.
 
-###Hide All
+### Hide All
 
 Click this button to clear all data drawn on the screen, while maintaining the current polygon.
 
-###Show All Trips
+### Show All Trips
 
 Clicking this button will display arrows leading from pickup locations to dropoff locations. Arrows that trend toward North-South will be blue, while arrows that trend toward South-North will be red. Ideally, these arrows would be gradients from blue to red, ending at the dropoff coordinates.
 
-###Show Dropoffs
+### Show Dropoffs
 
 Displays all dropoff locations for trips which start and end inside the polygon. Dropoff locations are drawn as red circles.
 
-###Show Pickups
+### Show Pickups
 
 Displays all pickup locations for trips which start and end inside the polygon. Pickup locations are drawn as blue circles.
 
-###Show Top 10 Pickups
+### Show Top 10 Pickups
 
 Displays the 10 pickup locations for trips which start and end inside the polygon that were found the most, within about a block of each other.
 
-###Show Pickups Heatmap
+### Show Pickups Heatmap
 
 Displays a heatmap of pickup locations within the given polygon. The more red the location on the heatmap, the more concentrated pickups were in that region. Zoom the map out to see more concentrated data.
 
-###The Top 10 Pickup List
+### The Top 10 Pickup List
 
 Hovering over any item in this list found in the bottom left corner will highlight the corresponding marker on the map. Clicking on the list item will zoom the map to the selected location. Each list item displays the coordinates as well as the amount of trips which started at that location within the given polygon.
 
